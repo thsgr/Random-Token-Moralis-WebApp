@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Token Randomizer</title>
+    <script src="https://unpkg.com/moralis/dist/moralis.js"></script>
+    <link rel="stylesheet" href="/static/css/style.css" data-n-g="">
+    <script>
+        function rm(elem) {
+          elem.parentNode.removeChild(elem); }
+    </script>
+  </head>
+
+  <body style="background-color: rgb(243 244 246);">
+
+<nav class="flex justify-between items-center px-nav py-3 flex-wrap">
+    <div class="flex items-center cursor-pointer">
+        <div id="thmb2"> </div>
+        <h1 style="color: #3b82f6"> <a href="#"> Token Randomizer Screen </a></h1>
+    </div>
+    
+    <div class="items-center space-x-4 hidden lg:flex">
+        <div id="thmb"> </div>
+        <button id="btn-login" class="dark:text-gray-100 hover:text-gray-300">Login</button>
+        <button id="btn-logout" class="dark:text-gray-100 hover:text-gray-300">Logout</button>
+        <a href="/static/pages/about.html"><button type="button" class="text-gray-100 bg-gradient-to-r from-black-500 to-blue-500 py-3 px-8 rounded-full hover:from-blue-500 hover:to-black-500">About →</button>
+        </a>
+    </div>
+
+
+</nav>
+
+<div class="flex flex-no-wrap">
+    <div class="w-64 h-screen sm:relative absolute border-r-2 border-gray-200 dark:border-gray-800 bg-gray-100 lg:h-full flex-col justify-between hidden lg:flex">
+        <div class="px-8">
+            <ul class="mt-12">
+                <a class="flex w-full justify-between p-2 text-gray-900 dark:text-gray-200 hover:text-gray-400 cursor-pointer items-center mb-3 font-semibold" href="../../">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z">
+                            </path>
+                            <rect class="our" x ="4" y="4" width="6" height="6" rx="1"></rect>
+                            <rect class="our" x="14" y="4" width="6" height="6" rx="1"></rect>
+                            <rect class="our" x="4" y="14" width="6" height="6" rx="1"></rect>
+                            <rect class="our" x="14" y="14" width="6" height="6" rx="1"></rect>
+                        </svg>
+                            <span class="text-sm ml-2">Dashboard</span>
+                    </div>
+                </a>
+
+                <a class="flex w-full justify-between px-2 text-gray-900 dark:text-gray-200 hover:text-gray-400 cursor-pointer items-center mb-6 " href="/static/pages/about.html">
+                    <div class="flex items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-grid" width="18" height="18" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z">
+                            </path>
+                            <rect class="our" x="4" y="4" width="6" height="6" rx="1"></rect>
+                            <rect class="our" x="14" y="4" width="6" height="6" rx="1"></rect>
+                            <rect class="our" x="4" y="14" width="6" height="6" rx="1"></rect>
+                            <rect class="our" x="14" y="14" width="6" height="6" rx="1"></rect>
+                        </svg>
+                        <span class="text-sm ml-2">About</span>
+                    </div>
+                </a>
+            </ul>
+        </div>
+    </div>
+  
+
+    <div class="container mx-auto md:w-4/5 w-11/12 px-10">
+        <div class="py-10">
+            <div class="flex w-full">
+                <article class="w-full lg:w-2/3 shrink-0 prose dark:prose-invert prose-a:text-blue-500 prose-img:rounded-xl prose-headings:underline prose-a:cursor-pointer max-w-none">
+                    <h1 style="color: #3b82f6">Token Randomizer</h1>
+                    <p style="font-size:18px">Find a random ERC-20 token and get financial statistics, with a buy or sell signal</p>
+                    <p>If you like the data, simply connect your wallet on ETH Chain to swap it !</p>
+                </article>
+            </div>
+        </div>
+
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 lg:px-16 gap-4">
+                <div class="my-1 px-1">
+                <div class="grid grid-cols-1 lg:px-2">
+                
+                    <div class="my-1 px-1">
+                        <div class="overflow-hidden rounded-lg shadow-lg">
+                            <div class="flex flex-col justify-evenly items-center py-8 w-full bg-gradient-to-br from-indigo-300">
+                                <span class="text-gray-700 text-center w-full  px-3">
+                                    <!-- <h1 class="text-xl font-semibold">Random Token</h1> -->
+                                    <div class="px-10 text-gray-700">
+                                        <div>
+                                            <p class="text-md pt-4">
+                                                <button id="btn-tok" class="text-gray-100 bg-gradient-to-r from-black-500 to-blue-500 py-0 px-5 rounded-full hover:from-blue-500 hover:to-black-500">
+                                                    Click to discover a random token
+                                                </button>
+                                                </br>
+                                                </br>
+                                                <div id="rdm-tok1" style="font-size:50px"> </div>
+                                                </br>
+                                                <div id="image-grid">
+                                                    <p class=""> Loading Token </p>
+                                                    </br>
+                                                    <div  class="grid grid-cols-1 py-2 lg:grid-cols-4 items-center justify-evenly">
+                                                        
+                                                        <center>
+                                                        <img src="/images/AVAX.png" width="50" height="50" id="img1" />
+                                                        </center>
+                                                        <center>
+                                                        <img src="/images/ETH.png" width="50" height="50" id="img2" />
+                                                        </center>
+                                                        <center>
+                                                        <img src="/images/BNB.png" width="50" height="50" id="img3" /> 
+                                                        </center>
+                                                        <center>
+                                                        <img src="/images/MATIC.png" width="50" height="50" id="img4" />  
+                                                        </center>
+                                                    </div>
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-1 px-1">
+                        <div class="overflow-hidden rounded-lg shadow-lg">
+                            <div class="flex flex-col justify-evenly items-center py-8 w-full bg-gradient-to-br from-indigo-300">
+                                <span class="text-gray-700 text-center w-full  px-3">
+                                    <!-- <h1 class="text-xl font-semibold">Random Token</h1> -->
+                                    <div class="px-10 text-gray-700">
+                                        <div>
+                                            <p class="text-md pt-4">
+                                                <h1 class="text-xl font-semibold text-gray-900">
+                                                <button id="rdm-tok4" class=""> $RANDOM_TOKEN </button>
+                                                    Stats
+                                                <br>
+                                                <br>
+                                                
+                                                <div class="grid grid-cols-1 py-2 lg:grid-cols-3 items-center justify-evenly">
+                                                    <center>
+                                                    <button> RSI </button>
+                                                    </center>
+                                                    <center>
+                                                    <button> MOM </button>
+                                                    </center>
+                                                    <center>
+                                                    <button> ROI </button>
+                                                    </center>
+                                                </div>
+
+                                                <div class="grid grid-cols-1 py-2 lg:grid-cols-3 items-center justify-evenly">
+                                                    <center>
+                                                    <p id="RSI"> 0 </p>
+                                                    </center>
+                                                    <center>
+                                                    <p id="MOM"> 0 </p>
+                                                    </center>
+                                                    <center>
+                                                    <p id="7d%"> 0</p>
+                                                    </center>
+                                                </div>
+
+                                                <p id="opp">
+                                                    
+                                                </p>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="my-1 px-1">
+                        <div class="overflow-hidden rounded-lg shadow-lg">
+                            <div class="flex flex-col justify-evenly items-center py-7 w-full bg-gradient-to-br from-indigo-300">
+                                <span class="text-gray-700 text-center w-full  px-3">
+                                    <!-- <h1 class="text-xl font-semibold">Random Token</h1> -->
+                                    <div class="px-10 text-gray-700">
+                                        <div>
+                                            <h1 class="text-xl font-semibold text-gray-900">
+                                                Swap <button id="rdm-tok2" class="py-1"> $RANDOM_TOKEN </button>
+                                            </h1>
+    
+                                            <p class="text-md pt-4">
+                                                        Enter $ETH Amount:
+                                                <div class="py-1">
+                                                    <input name='value-in' type="text" class="no-outline rounded-full text-center" value="1"></input>
+                                                </div>
+
+                                                <div id="tkn-recv">
+                                                    You will receive :
+                                                </br>
+                                                    <button id="tkn-recv-amnt" class="no-outline rounded-full text-center px-10">No amount</button>
+                                                </div>
+                                                
+                                                
+                                                <div class="grid grid-cols-1 py-6 lg:grid-cols-2 items-center justify-evenly">
+                                                    <center>
+                                                        <button id="btn-quote" class="text-gray-100 bg-gradient-to-r from-black-500 to-blue-500 py-0 px-5 rounded-full hover:from-blue-500 hover:to-black-500">
+                                                            Get Quote
+                                                        </button>
+                                                    </center>
+                                                    <center>
+                                                        <button id="btn-swap" class="text-gray-100 bg-gradient-to-r from-black-500 to-blue-500 py-0 px-5 rounded-full hover:from-blue-500 hover:to-black-500">
+                                                            Swap tokens
+                                                        </button>
+                                                    </center>
+                                                </div>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                </div>
+
+                <div class="my-2 px-1 ">
+                    <div class="overflow-hidden rounded-lg shadow-lg">
+                        <div class="flex flex-col justify-evenly items-center py-8 w-full bg-gradient-to-br from-indigo-300">
+
+                            <span class="text-white text-center w-full  px-8">
+                                <h1 class="text-xl font-semibold text-gray-900">
+                                    <button id="rdm-tok3" class=""> $RANDOM_TOKEN </button> Graph</h1>
+
+                                <div>
+                                    <div>
+                                    <input type ="radio" name="time" id="week" value=7 checked>7</input>
+                                    <input type ="radio" name="time" id="2week" value=14>14</input>
+                                    <input type ="radio" name="time" id="month" value=30>30</input>
+                                    </div>
+                                <div>
+                                        <input type ="radio" name="ID" id="ohlc-show" value="OHLC"> OHLC</input>
+                                        <input type ="radio" name="ID" id="line-show" value="Simple"> Simple</input>
+                                    </div>
+                                    <!-- <select id="list"></select> -->
+                                    <div id="line">
+                                        <canvas id="priceChart" width="600" height="400"></canvas>
+                                    </div>
+                                </div>
+                            </span>
+                            <br>
+                            <span class="text-white text-center w-full  px-8">
+                                <div>
+                                    <div id="ohlc">
+                                        <!-- OHLC Plotly Chart -->
+                                    </div>
+                                </div>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+    
+            <div class="grid grid-cols-1 py-10 lg:px-2">
+                <div class="my-1 px-1 ">
+                    <div class="overflow-hidden rounded-lg">
+                        <div class="flex flex-col justify-evenly items-center py-8 w-full">
+                            <span class="ext-center w-full self-start px-8">
+                                <div class="grid grid-cols-1 w-full">
+
+                                    <div class="flex justify-between">
+                                        <p class="text-xs lg:text-base text-left">
+                                        </p>
+                                        <p class="text-xs lg:text-base">2022 - Token Randomizer</p></div>
+                                    </div>
+                                </div>
+                                
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+</div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script src="https://cdn.plot.ly/plotly-2.11.1.min.js"></script>
+<script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+
+<script type="module" src="/main.js"></script>
+<script type="text/javascript" src="/static/auth/auth.js"></script>
+<script type="module" src="/stats.js"></script>
+<script type="module" src="/random.js"></script>
+<script type="module" src="/swap.js"></script>
+<script type="module" src="/animate.js"></script>
+<script type="module" src="/chart.js"></script>
+
+</body>
+</html>
